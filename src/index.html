@@ -11,16 +11,25 @@
     <title>Countries Search</title>
   </head>
   <body>
-    <span class="text">Type country name:</span><br />
-    <div class="input-wrapper">
-      <input
-        class="input-space search-js"
-        type="text"
-        name="country"
-        placeholder="Country name"
-      />
-      <i class="fas fa-search"></i>
+    <div id="page-container">
+      <div class="data-wrapper">
+        <div class="search-wrapper">
+          <!-- <span class="text">Start to enter initial letters for search</span> -->
+          <div class="input-wrapper">
+            <input
+              class="input-space search-js"
+              type="text"
+              name="country"
+              placeholder="Start to enter initial letters for search"
+            />
+            <svg class="search-svg" width="18" height="18">
+              <use href="./images/sprite.svg#icon-search"></use>
+            </svg>
+          </div>
+        </div>
+
+        <div class="countries-container countries-container-js"></div>
+      </div>
     </div>
-    <div class="countries-container countries-container-js"></div>
   </body>
 </html>
