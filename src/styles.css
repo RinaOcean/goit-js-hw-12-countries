@@ -73,6 +73,34 @@ input:focus {
   fill: #a8395e;
 }
 
+.clear-svg {
+  width: 18px;
+  height: 18px;
+  fill: #ffffff;
+}
+
+.clear-button {
+  position: absolute;
+  top: 11%;
+  right: 10px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px;
+  border-style: none;
+  background-color: rgb(73, 114, 119);
+  outline-style: none;
+}
+
+.clear-button:hover,
+.clear-button:focus {
+  background-color: #a8395e;
+}
+
 .countries-container {
   font-size: 25px;
 }

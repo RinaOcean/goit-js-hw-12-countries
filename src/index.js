@@ -18,6 +18,7 @@ defaultModules.set(PNotifyMobile, {});
 const refs = getRefs();
 
 refs.searchForm.addEventListener('input', debounce(onSearch, 500));
+refs.closeButton.addEventListener('click', clearQuery);
 
 function onSearch(e) {
   const searchQuery = e.target.value;
@@ -66,4 +67,8 @@ function onFetchError() {
     closer: true,
     closerHover: false,
   });
+}
+
+function clearQuery() {
+  refs.searchForm.value = '';
 }
