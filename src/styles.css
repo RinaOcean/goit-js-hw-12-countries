@@ -74,17 +74,17 @@ input:focus {
 }
 
 .clear-svg {
-  width: 18px;
-  height: 18px;
+  width: 13px;
+  height: 13px;
   fill: #ffffff;
 }
 
 .clear-button {
   position: absolute;
-  top: 11%;
+  top: 16%;
   right: 10px;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   display: flex;
   border-radius: 50%;
   justify-content: center;
