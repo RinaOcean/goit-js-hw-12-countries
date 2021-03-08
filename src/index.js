@@ -23,7 +23,7 @@ refs.closeButton.addEventListener('click', clearQuery);
 function onSearch(e) {
   const searchQuery = e.target.value;
 
-  API.fetchCountries(searchQuery).then(renderCountries).catch(onFetchError);
+  API.fetchCountries(searchQuery).then(renderCountries);
 }
 
 function renderCountries(countries) {
@@ -71,4 +71,7 @@ function onFetchError() {
 
 function clearQuery() {
   refs.searchForm.value = '';
+  if (refs.searchForm.value === '') {
+    refs.countriesWrapper.innerHTML = '';
+  }
 }
