@@ -1,4 +1,4 @@
-const debounce = require('lodash.debounce');
+import debounce from 'lodash.debounce';
 
 import './styles.css';
 
@@ -21,9 +21,14 @@ refs.searchForm.addEventListener('input', debounce(onSearch, 500));
 refs.closeButton.addEventListener('click', clearQuery);
 
 function onSearch(e) {
-  const searchQuery = e.target.value;
+  const searchQuery = e.target.value.trim();
+  if (searchQuery === '') {
+    refs.countriesWrapper.innerHTML = '';
+    return;
+  }
+  validateQuery(searchQuery);
 
-  API.fetchCountries(searchQuery).then(renderCountries);
+  API.fetchCountries(searchQuery).then(renderCountries).catch(onFetchError);
 }
 
 function renderCountries(countries) {
@@ -36,6 +41,9 @@ function renderCountries(countries) {
     refs.countriesWrapper.innerHTML = markupList;
   }
 
+  if (countries.length >= 11) {
+    onRenderError();
+  }
   if (countries.length >= 11) {
     onRenderError();
   }
@@ -57,9 +65,9 @@ function onRenderError() {
 
 function onFetchError() {
   error({
-    text: 'ERROR! Check entered letters!',
+    text: 'ERROR! Check entered symbols!',
     hide: true,
-    delay: 2000,
+    delay: 4000,
     sticker: false,
     mode: 'light',
     width: '100%',
@@ -71,7 +79,21 @@ function onFetchError() {
 
 function clearQuery() {
   refs.searchForm.value = '';
-  if (refs.searchForm.value === '') {
-    refs.countriesWrapper.innerHTML = '';
+}
+
+function validateQuery(searchQuery) {
+  const pattern = /[A-z]/;
+  if (!pattern.test(searchQuery)) {
+    return error({
+      text: 'Only latin symbols, please!',
+      hide: true,
+      delay: 4000,
+      sticker: false,
+      mode: 'light',
+      width: '100%',
+      icons: 'brighttheme',
+      closer: true,
+      closerHover: false,
+    });
   }
 }
