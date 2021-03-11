@@ -26,7 +26,6 @@ function onSearch(e) {
     refs.countriesWrapper.innerHTML = '';
     return;
   }
-  validateQuery(searchQuery);
 
   API.fetchCountries(searchQuery).then(renderCountries).catch(onFetchError);
 }
@@ -35,16 +34,10 @@ function renderCountries(countries) {
   if (countries.length === 1) {
     const markupCard = countryCardTmpl(countries);
     refs.countriesWrapper.innerHTML = markupCard;
-  }
-  if (countries.length > 1 && countries.length < 11) {
+  } else if (countries.length > 1 && countries.length < 11) {
     const markupList = countryListingTmpl(countries);
     refs.countriesWrapper.innerHTML = markupList;
-  }
-
-  if (countries.length >= 11) {
-    onRenderError();
-  }
-  if (countries.length >= 11) {
+  } else if (countries.length >= 11) {
     onRenderError();
   }
 }
@@ -79,21 +72,4 @@ function onFetchError() {
 
 function clearQuery() {
   refs.searchForm.value = '';
-}
-
-function validateQuery(searchQuery) {
-  const pattern = /[A-z]/;
-  if (!pattern.test(searchQuery)) {
-    return error({
-      text: 'Only latin symbols, please!',
-      hide: true,
-      delay: 4000,
-      sticker: false,
-      mode: 'light',
-      width: '100%',
-      icons: 'brighttheme',
-      closer: true,
-      closerHover: false,
-    });
-  }
 }
